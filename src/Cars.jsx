@@ -1,15 +1,13 @@
 // src/Cars.jsx
 
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import CarsContext from './context/CarsContext';
 import carBlue from './images/carBlue.jpeg';
 import carRed from './images/carRed.jpeg';
 import carYellow from './images/carYellow.jpeg';
 
-class Cars extends Component {
-  render() {
-    const { redCar, blueCar, yellowCar } = this.context.cars;
-    const { moveCar } = this.context;
+function Cars() {
+  const { redCar, blueCar, yellowCar, setRedCar, setBlueCar, setYellowCar } = useContext(CarsContext);
     return (
       <div>
         <div>
@@ -19,7 +17,7 @@ class Cars extends Component {
             alt="red car"
           />
           <button
-            onClick={() => moveCar('redCar', !redCar)}
+            onClick={() => setRedCar(!redCar)}
             type="button"
           >
             Move
@@ -32,7 +30,7 @@ class Cars extends Component {
             alt="blue car"
           />
           <button
-            onClick={() => moveCar('blueCar', !blueCar)}
+            onClick={() => setBlueCar(!blueCar)}
             type="button"
           >
             Move
@@ -45,7 +43,7 @@ class Cars extends Component {
             alt="yellow car"
           />
           <button
-            onClick={() => moveCar('yellowCar', !yellowCar)}
+            onClick={() => setYellowCar(!yellowCar)}
             type="button"
           >
             Move
@@ -53,7 +51,7 @@ class Cars extends Component {
         </div>
       </div>
     )
-  }
+
 };
 
 Cars.contextType = CarsContext;
